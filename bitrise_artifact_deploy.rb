@@ -177,6 +177,9 @@ begin
 				puts " (i) zip_archive_path: #{zip_archive_path}"
 				zip_gen = ZipFileGenerator.new(options[:deploy_source_path], zip_archive_path)
 				zip_gen.write()
+				tempfile.close
+
+				raise "Failed to create compressed ZIP file" unless File.exists?(zip_archive_path)
 
 				deploy_file_to_bitrise(
 					zip_archive_path,
