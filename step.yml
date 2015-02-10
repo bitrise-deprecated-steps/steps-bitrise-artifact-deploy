@@ -1,0 +1,72 @@
+name: "Bitrise Artifact Deploy"
+description: |
+  Generic Bitrise artifact deployer Step
+website: https://github.com/bitrise-io/steps-bitrise-artifact-deploy
+fork_url: https://github.com/bitrise-io/steps-bitrise-artifact-deploy
+source:
+  git: https://github.com/bitrise-io/steps-bitrise-artifact-deploy.git
+host_os_tags:
+  - "osx-10.10"
+project_type_tags: []
+type_tags:
+  - "deploy"
+is_requires_admin_user: false
+inputs:
+  - 
+    mapped_to: STEPLIB_FORMATTED_OUTPUT_FILE_PATH
+    title: "Formatted Output File Path"
+    description: |
+      If provided this Step will generate a (markdown)
+      formatted output to this path.
+    is_required: false
+    is_expand: true
+  - 
+    mapped_to: STEP_BITRISE_ARTIFACT_DEPLOY_BUILD_URL
+    title: "Bitrise Build URL"
+    description: |
+      Unique build URL of this build on Bitrise.io
+    is_required: true
+    is_expand: true
+    value: "$BITRISE_BUILD_URL"
+  - 
+    mapped_to: STEP_BITRISE_ARTIFACT_DEPLOY_API_TOKEN
+    title: "Bitrise Build API Token"
+    description: |
+      The build's API Token for the build on Bitrise.io
+    is_required: true
+    is_expand: true
+    value: "$BITRISE_BUILD_API_TOKEN"
+  - 
+    mapped_to: STEP_BITRISE_ARTIFACT_IS_COMPRESS
+    title: "Compress the artifacts into one file?"
+    description: |
+      If this option is allowed the artifacts
+      found in the *Deploy directory* folder will be compressed
+      into a single file.
+
+      If this option is turned off the artifacts
+      found in the *Deploy directory* folder will be deployed
+      separately.
+    is_required: true
+    is_expand: false
+    value: "true"
+    value_options: ["true", "false"]
+  - 
+    mapped_to: STEP_BITRISE_ARTIFACT_DEPLOY_SOURCE_PATH
+    title: "Deploy directory or file path"
+    description: |
+      Specify the directory or file path which will be deployed.
+      If the specified path is a directory then every file
+      in the directory will be deployed - but only the
+      files in the specified directory, sub-directories
+      won't be uploaded. For uploading the directory's content
+      recursively you should use the *Compress* option
+      which will compress the whole directory, with
+      every sub-directory included.
+
+      If you specify a file path then only the specified
+      file will be deployed.
+    is_required: true
+    is_expand: true
+    value: "$BITRISE_DEPLOY_DIR"
+outputs: []
