@@ -104,6 +104,8 @@ class ZipFileGenerator
 end
 
 def deploy_file_to_bitrise(file_to_deploy_path, build_url, api_token)
+	puts_section_to_formatted_output "Deploying file: `#{file_to_deploy_path}`"
+
 	# - Create a Build Artifact on Bitrise
 	file_to_deploy_filename = File.basename(file_to_deploy_path)
 
