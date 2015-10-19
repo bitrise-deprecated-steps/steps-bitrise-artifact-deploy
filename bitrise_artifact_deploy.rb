@@ -9,12 +9,12 @@ require 'tempfile'
 # --- Options
 
 options = {
-	build_url: ENV['STEP_BITRISE_ARTIFACT_DEPLOY_BUILD_URL'],
-	api_token: ENV['STEP_BITRISE_ARTIFACT_DEPLOY_API_TOKEN'],
-	deploy_source_path: ENV['STEP_BITRISE_ARTIFACT_DEPLOY_SOURCE_PATH'],
+	build_url: ENV['build_url'],
+	api_token: ENV['build_api_token'],
+	deploy_source_path: ENV['deploy_path'],
 	is_compress: false,
 }
-if ENV['STEP_BITRISE_ARTIFACT_IS_COMPRESS'] == 'true'
+if ENV['is_compress'] == 'true'
 	options[:is_compress] = true
 end
 
@@ -24,7 +24,7 @@ puts "Options: #{options}"
 # ----------------------------
 # --- Formatted Output
 
-$formatted_output_file_path = ENV['STEPLIB_FORMATTED_OUTPUT_FILE_PATH']
+$formatted_output_file_path = ENV['BITRISE_FORMATTED_OUTPUT_FILE_PATH']
 
 def puts_string_to_formatted_output(text)
 	puts text
@@ -122,7 +122,7 @@ def deploy_file_to_bitrise(file_to_deploy_path, build_url, api_token)
 	end
 	parsed_resp = JSON.parse(raw_resp.body)
 	puts "* parsed_resp: #{parsed_resp}"
-	
+
 	unless parsed_resp['error_msg'].nil?
 		raise "Failed to create the Build Artifact on Bitrise: #{parsed_resp['error_msg']}"
 	end
