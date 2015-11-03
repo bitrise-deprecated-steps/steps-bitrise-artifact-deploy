@@ -108,10 +108,13 @@ begin
             options[:is_enable_public_page]
           )
         elsif disk_file_path.match('.*.apk')
-          deploy_file_to_bitrise(disk_file_path,
-                                 options[:build_url],
-                                 options[:api_token]
-                                )
+          deploy_apk_to_bitrise(disk_file_path,
+                                options[:build_url],
+                                options[:api_token],
+                                options[:notify_user_groups],
+                                options[:notify_email_list],
+                                options[:is_enable_public_page]
+                               )
         else
           deploy_file_to_bitrise(disk_file_path,
                                  options[:build_url],
