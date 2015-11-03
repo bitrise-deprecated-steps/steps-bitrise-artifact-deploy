@@ -6,16 +6,20 @@ app:
   # define these in your .bitrise.secrets.yml
   - BITRISE_BUILD_URL:
   - BITRISE_BUILD_API_TOKEN:
-  - BITRISE_DEPLOY_DIR:
+  - BITRISE_DEPLOY_PATH:
+  - NOTIFY_USER_GROUPS:
+  - NOTIFY_EMAIL_LIST:
 
 workflows:
   test:
     steps:
-    - change-workdir:
-        inputs:
-        - path: ./_tmp
-        - is_create_path: true
     - path::./:
         run_if: true
         inputs:
-        - is_compress: false
+        - build_url: $BITRISE_BUILD_URL
+        - build_api_token: $BITRISE_BUILD_API_TOKEN
+        - is_compress: "no"
+        - deploy_path: $BITRISE_DEPLOY_PATH
+        - notify_user_groups: $NOTIFY_USER_GROUPS
+        - notify_email_list: $NOTIFY_EMAIL_LIST
+        - is_enable_public_page: yes
