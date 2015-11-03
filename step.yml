@@ -35,7 +35,7 @@ inputs:
         The build's API Token for the build on Bitrise.io
       is_required: true
       is_expand: true
-  - is_compress: "true"
+  - is_compress: "no"
     opts:
       title: Compress the artifacts into one file?
       summary: |-
@@ -53,8 +53,8 @@ inputs:
       is_required: true
       is_expand: false
       value_options:
-        - "true"
-        - "false"
+        - "yes"
+        - "no"
   - deploy_path: "$BITRISE_DEPLOY_DIR"
     opts:
       title: "Deploy directory or file path"
@@ -72,4 +72,51 @@ inputs:
         file will be deployed.
       is_required: true
       is_expand: true
+  - notify_user_groups: "everyone"
+    opts:
+      title: "Notify: User Groups"
+      description: |
+        Your App's user groups to notify, comma separated.
+        Possible group names:
+
+        * none
+        * testers
+        * developers
+        * admins
+        * owner
+        * everyone
+
+        An example to notify your developers and testers:
+
+        `testers, developers`
+
+        If you want to notify everyone in your team just specify `everyone`.
+
+        If you don't want to notify anyone set this to `none`.
+      is_required: false
+      is_expand: false
+  - notify_email_list:
+    opts:
+      title: "Notify: Emails"
+      description: |
+        Email addresses to notify, comma separated.
+
+        You can specify any email address, the recepients
+        don't have to be in your team.
+      is_required: false
+      is_expand: false
+  - is_enable_public_page: "yes"
+    opts:
+      title: "Enable public page for the App?"
+      description: |
+        If this option is enabled a public install page
+        will be available with a long and random URL which can be shared
+        with others who are not registered on Bitrise.
+
+        **If you disable this option the Notify Emails option will
+        be ignored and the Notify Groups will receive the build's
+        URL instead of the public page's URL!**
+      is_required: true
+      is_expand: false
+      value_options: ["yes", "no"]
 outputs: []
