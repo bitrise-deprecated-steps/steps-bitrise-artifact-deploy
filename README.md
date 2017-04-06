@@ -2,6 +2,8 @@
 
 Generic Bitrise artifact deployer Step
 
+__Deprecated:__ this step is deprecated, please use https://github.com/bitrise-io/steps-deploy-to-bitrise-io instead!
+
 
 ## How to use this Step
 
